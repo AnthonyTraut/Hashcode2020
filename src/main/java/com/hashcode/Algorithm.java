@@ -7,6 +7,7 @@ import java.util.List;
 import com.hashcode.model.AlgoInfo;
 import com.hashcode.model.Book;
 import com.hashcode.model.Library;
+import com.hashcode.processus.OrderLibraryProcessus;
 
 public class Algorithm {
     
@@ -27,7 +28,8 @@ public class Algorithm {
         nbLibrariesToProcess = algoInfo.getNbLib();
         
         final List<Section> descriptions = new ArrayList<>();
-        for (Library library : libraries) {
+        OrderLibraryProcessus orderLibraryProcessus = new OrderLibraryProcessus();
+        for (Library library : orderLibraryProcessus.orderLibrariesByTotalScore(libraries)) {
             final int id = library.getId();
             final int nbBooksToScan = library.getNbBooks();
             final List<Integer> information = Arrays.asList(id, nbBooksToScan);
