@@ -1,4 +1,4 @@
-package com.hashcode;
+package com.hashcode.model;
 
 import lombok.Getter;
 import lombok.Setter;

@@ -1,10 +1,12 @@
-package com.hashcode;
+package com.hashcode.model;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import lombok.Getter;
 import lombok.Setter;
+
+import com.hashcode.model.Book;
 
 @Getter
 @Setter

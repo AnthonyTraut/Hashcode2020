@@ -1,8 +1,12 @@
-package com.hashcode;
+package com.hashcode.tool;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
+
+import com.hashcode.Section;
+import com.hashcode.model.Book;
+import com.hashcode.model.Library;
 
 public class DataMapper {
     public List<Book> toBooks(List<Integer> scores) {
