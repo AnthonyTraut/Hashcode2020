@@ -25,26 +25,22 @@ public class Algorithm {
     }
     
     public OutputFile process() {
-        nbLibrariesToProcess = 0;
+        nbLibrariesToProcess = algoInfo.getNbLib();
         
         final List<Section> descriptions = new ArrayList<>();
         OrderLibraryProcessus orderLibraryProcessus = new OrderLibraryProcessus();
         for (Library library : orderLibraryProcessus.orderLibrariesByTotalScore(libraries)) {
             final int id = library.getId();
-            int nbBooksToScan = 0;
+            final int nbBooksToScan = library.getNbBooks();
+            final List<Integer> information = Arrays.asList(id, nbBooksToScan);
             
             final List<Integer> ids = new ArrayList<>();
             for (Book book : library.getAllBooks()) {
-                if (!booksProcessed.contains(book.getId())) {
-                    ids.add(book.getId());
-                    booksProcessed.add(book.getId());
-                    ++nbBooksToScan;
-                }
+                ids.add(book.getId());
+                booksProcessed.add(book.getId());
             }
-            final List<Integer> information = Arrays.asList(id, nbBooksToScan);
             
             descriptions.add(new Section(information, ids));
-            ++nbLibrariesToProcess;
         }
         
         return new OutputFile(nbLibrariesToProcess, descriptions);
