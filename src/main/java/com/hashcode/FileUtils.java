@@ -65,7 +65,6 @@ public class FileUtils {
         String line = readLine();
         if (line != null) {
             final List<Integer> information = parseLine(line);
-            System.out.println("Information : " + information);
             
             inputFile.setInformation(information);
         }
@@ -73,18 +72,15 @@ public class FileUtils {
         line = readLine();
         if (line != null) {
             final List<Integer> scores = parseLine(line);
-            System.out.println("Scores : " + scores);
             
             inputFile.setScores(scores);
         }
         
         while ((line = readLine()) != null && !line.isEmpty()) {
             final List<Integer> information = parseLine(line);
-            System.out.println("Section information : " + information);
             
             line = readLine();
             final List<Integer> ids = parseLine(line);
-            System.out.println("Section ids : " + ids);
             
             inputFile.getSections().add(new Section(information, ids));
         }
@@ -97,13 +93,10 @@ public class FileUtils {
     public void writeFile(final OutputFile outputFile)
             throws IOException {
         writeLine(outputFile.getNumber().toString());
-        System.out.println("Number : " + outputFile.getNumber().toString());
         
         for (Section section : outputFile.getDescriptions()) {
             writeLine(convertLine(section.getInformation()));
-            System.out.println("Information : " + convertLine(section.getInformation()));
             writeLine(convertLine(section.getIds()));
-            System.out.println("Ids : " + convertLine(section.getIds()));
         }
         
         bufferedWriter.close();

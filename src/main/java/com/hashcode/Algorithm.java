@@ -34,11 +34,20 @@ public class Algorithm {
             final List<Integer> ids = new ArrayList<>();
             for (Book book : library.getAllBooks()) {
                 ids.add(book.getId());
+                removeFromRemainingLibraries(library, book);
             }
             
             descriptions.add(new Section(information, ids));
         }
         
         return new OutputFile(nbLibrariesToProcess, descriptions);
+    }
+    
+    private void removeFromRemainingLibraries(final Library libraryFrom, final Book bookToRemove) {
+        for (Library library : libraries) {
+            if (library.getId() != libraryFrom.getId()) {
+                library.removeBook(bookToRemove);
+            }
+        }
     }
 }
