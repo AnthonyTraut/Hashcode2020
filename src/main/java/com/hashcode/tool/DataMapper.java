@@ -11,15 +11,11 @@ import com.hashcode.model.Library;
 
 public class DataMapper {
     public List<Book> toBooks(List<Integer> scores) {
-        List<Book> res = new ArrayList<>();
-        for (int i = 0; i < scores.size(); ++i) {
-            res.add(toBook(i, scores.get(i)));
-        }
-        return res;
+        return scores.stream().map(score -> toBook(score)).collect(Collectors.toList());
     }
     
-    private Book toBook (Integer id, Integer score) {
-        return new Book(id, score);
+    private Book toBook (Integer score) {
+        return new Book(score);
     }
     
     public List<Library> toLibraries(List<Section> sections, List<Book> allBooks) {
