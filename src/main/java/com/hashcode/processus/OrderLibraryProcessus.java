@@ -11,12 +11,12 @@ import com.hashcode.model.Library;
 public class OrderLibraryProcessus {
     public List<Library> orderLibrariesByTotalScore(List<Library> allLibraries) {
         ArrayList<Library> orderedLibrairies = new ArrayList<>(allLibraries);
-//        Collections.sort(orderedLibrairies, new Comparator<Library>() {
-//            @Override
-//            public int compare(final Library lib1, final Library lib2) {
-//                return getScoreForLib(lib1) - getScoreForLib(lib2);
-//            }
-//        });
+        Collections.sort(orderedLibrairies, new Comparator<Library>() {
+            @Override
+            public int compare(final Library lib1, final Library lib2) {
+                return getScoreForLib(lib1) - getScoreForLib(lib2);
+            }
+        });
         return orderedLibrairies;
     }
     
