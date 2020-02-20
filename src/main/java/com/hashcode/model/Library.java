@@ -28,17 +28,6 @@ public class Library {
         orderBooks();
     }
     
-    public void removeBook(final Book book) {
-        Book bookToRemove = null;
-        for (Book value : allBooks) {
-            if (value.getId() == book.getId()) {
-                bookToRemove = value;
-                break;
-            }
-        }
-        allBooks.remove(bookToRemove);
-    }
-    
     public void orderBooks() {
     
     }
