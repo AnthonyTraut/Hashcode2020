@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import com.hashcode.Section;
+import com.hashcode.model.AlgoInfo;
 import com.hashcode.model.Book;
 import com.hashcode.model.Library;
 
