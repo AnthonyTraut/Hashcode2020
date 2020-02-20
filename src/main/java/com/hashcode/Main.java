@@ -1,6 +1,7 @@
 package com.hashcode;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class Main {
     
@@ -17,6 +18,12 @@ public class Main {
         
         final FileProcess fileProcess = new FileProcess(inputFile);
         
+        final OutputFile outputFile = new OutputFile(1, new ArrayList<>());
         fileUtils.createOutputFile();
+        try {
+            fileUtils.writeFile(outputFile);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
