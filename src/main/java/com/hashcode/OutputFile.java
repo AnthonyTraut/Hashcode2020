@@ -1,6 +1,5 @@
 package com.hashcode;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import lombok.Getter;

@@ -6,12 +6,12 @@ import java.util.List;
 import lombok.Getter;
 import lombok.Setter;
 
-import com.hashcode.model.Book;
-
 @Getter
 @Setter
 public class Library {
+    
     private static int cpt = 0;
+    
     private int id;
     private int nbBooks;
     private int signedUpDays;
