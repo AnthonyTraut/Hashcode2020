@@ -5,7 +5,7 @@ import lombok.Setter;
 
 @Getter
 public class Book {
-    private int cpt = 0;
+    private static int cpt = 0;
     private int id;
     private int score;
     
