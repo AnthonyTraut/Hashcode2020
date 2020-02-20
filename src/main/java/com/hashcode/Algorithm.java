@@ -32,7 +32,6 @@ public class Algorithm {
         for (Library library : orderLibraryProcessus.orderLibrariesByTotalScore(libraries)) {
             final int id = library.getId();
             int nbBooksToScan = 0;
-            final List<Integer> information = Arrays.asList(id, nbBooksToScan);
             
             final List<Integer> ids = new ArrayList<>();
             for (Book book : library.getAllBooks()) {
@@ -42,6 +41,7 @@ public class Algorithm {
                     ++nbBooksToScan;
                 }
             }
+            final List<Integer> information = Arrays.asList(id, nbBooksToScan);
             
             descriptions.add(new Section(information, ids));
             ++nbLibrariesToProcess;
