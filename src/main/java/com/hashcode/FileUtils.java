@@ -7,8 +7,12 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.List;
 
 public class FileUtils {
+    
+    private static final String SEPARATOR = " ";
     
     private String filename;
     private BufferedReader bufferedReader;
@@ -22,7 +26,7 @@ public class FileUtils {
      * Récupère le fichier d'entrée et ouvre un reader
      */
     public void getInputFile() {
-        InputStream inputStream = Main.class.getClassLoader().getResourceAsStream("input/" + filename + ".in");
+        InputStream inputStream = Main.class.getClassLoader().getResourceAsStream("input/" + filename + ".txt");
         bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
     }
     
@@ -41,7 +45,7 @@ public class FileUtils {
     }
     
     /**
-     * Lit un ligne
+     * Lit une ligne
      * @return
      * @throws IOException
      */
@@ -61,21 +65,59 @@ public class FileUtils {
     }
     
     /**
-     * Traite le fichier
+     * Lit le fichier
      * @throws IOException
      */
-    public void process()
+    public InputFile readFile()
             throws IOException {
-        String line;
-        while ((line = readLine()) != null) {
-            writeLine(line);
+        final InputFile inputFile = new InputFile();
+        
+        String line = readLine();
+        if (line != null) {
+            final List<Integer> information = parseLine(line);
+            System.out.println("Information : " + information);
+            
+            inputFile.setInformation(information);
         }
-        bufferedWriter.close();
+        
+        line = readLine();
+        if (line != null) {
+            final List<Integer> scores = parseLine(line);
+            System.out.println("Scores : " + scores);
+            
+            inputFile.setScores(scores);
+        }
+        
+        while ((line = readLine()) != null && !line.isEmpty()) {
+            final List<Integer> information = parseLine(line);
+            System.out.println("Section information : " + information);
+            
+            line = readLine();
+            final List<Integer> ids = parseLine(line);
+            System.out.println("Section ids : " + ids);
+    
+            inputFile.getSections().add(new Section(information, ids));
+        }
+        
+        bufferedReader.close();
+        
+        return inputFile;
     }
     
     private String getProgramPath() {
         String currentdir = System.getProperty("user.dir");
         currentdir = currentdir.replace("\\", "/");
         return currentdir + "/";
+    }
+    
+    private List<Integer> parseLine(final String line) {
+        final List<Integer> parsedLine = new ArrayList<>();
+        final String[] splitLine = line.split(SEPARATOR);
+    
+        for (String value : splitLine) {
+            parsedLine.add(Integer.parseInt(value));
+        }
+        
+        return parsedLine;
     }
 }
