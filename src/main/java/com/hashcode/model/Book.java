@@ -4,15 +4,23 @@ import lombok.Getter;
 
 @Getter
 public class Book {
-    
-    private static int cpt = 0;
-    
+
     private int id;
     private int score;
-    
-    public Book(final int score) {
-        this.id = cpt;
+
+    private int nbOccurrences = 1;
+    private boolean scanned = false;
+
+    public Book(final int id, final int score) {
+        this.id = id;
         this.score = score;
-        ++cpt;
+    }
+
+    public void addOccurrence() {
+        nbOccurrences++;
+    }
+
+    public void scan() {
+        scanned = true;
     }
 }
