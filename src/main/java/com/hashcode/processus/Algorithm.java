@@ -3,6 +3,7 @@ package com.hashcode.processus;
 import com.hashcode.model.Book;
 import com.hashcode.model.Library;
 import com.hashcode.model.LibraryProcess;
+import lombok.extern.slf4j.Slf4j;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -10,9 +11,8 @@ import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 
+@Slf4j
 public class Algorithm {
-    private static final Double COEF_SIGNUP = null;
-    private static final Double COEF_OCCURRENCES = null;
     private final List<Library> libraries;
     private int nbDays;
     private int currentDay = 0;
@@ -70,13 +70,12 @@ public class Algorithm {
     private int getScore(Library library) {
         int scoreTotal = 0;
 
-        for (Book bookToScan : getBooksScannable(library)) {
-            final double coefOccurrences = (COEF_OCCURRENCES != null ? (int) Math.ceil(COEF_OCCURRENCES * bookToScan.getNbOccurrences()) : bookToScan.getNbOccurrences());
-            scoreTotal += Math.ceil(bookToScan.getScore() / coefOccurrences);
+        final List<Book> booksScannable = getBooksScannable(library);
+        for (Book bookToScan : booksScannable) {
+            scoreTotal += Math.ceil(bookToScan.getScore());
         }
 
-        final double coefSignup = (COEF_SIGNUP != null ? (int) Math.ceil(COEF_SIGNUP * library.getSignedUpDays()) : library.getSignedUpDays());
-        return (int) Math.ceil(scoreTotal / coefSignup);
+        return (int) Math.ceil(scoreTotal / library.getSignedUpDays());
     }
 
     private List<Book> getBooksScannable(Library library) {
@@ -104,4 +103,5 @@ public class Algorithm {
 
         return score.get();
     }
+
 }

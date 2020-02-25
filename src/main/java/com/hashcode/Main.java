@@ -62,8 +62,6 @@ public class Main {
 
         final int score = algorithm.calculateScore();
         log.info(file + " score : " + score);
-        long endTime = System.currentTimeMillis();
-        log.info("That took " + (endTime - startTime) / 60000 + " minutes");
 
         return score;
     }
